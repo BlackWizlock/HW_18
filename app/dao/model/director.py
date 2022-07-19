@@ -13,3 +13,11 @@ class Director(db.Model):
 class DirectorSchema(Schema):
     id = fields.Int()
     name = fields.Str()
+
+
+def db_create():
+    db.create_all()
+
+
+def db_drop():
+    db.drop_all()
