@@ -4,7 +4,7 @@ from flask_restx import Resource, Namespace
 from app.dao.model.director import DirectorSchema
 from container import director_service
 
-directors_ns = Namespace('directors')
+directors_ns = Namespace('directors', description='Работа с таблицей directors')
 
 director_schema = DirectorSchema()
 directors_schema = DirectorSchema(many=True)

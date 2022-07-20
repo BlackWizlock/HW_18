@@ -25,10 +25,10 @@ def create_app(config: Config) -> Flask:
 # Application configuration, db init, restx init, namespace assignment
 def configure_app(application: Flask):
     db.init_app(application)
-    api = Api(app)
+    api = Api(app, description='API для работы с базой данных фильмов', title='MOVIE API', version='1.0')
+    api.add_namespace(movies_ns)
     api.add_namespace(directors_ns)
     api.add_namespace(genres_ns)
-    api.add_namespace(movies_ns)
 
 
 if __name__ == '__main__':
