@@ -1,7 +1,7 @@
 from app.dao.model.genre import Genre
 
 
-# CRUD
+# сRud - only read was used
 class GenreDAO:
     def __init__(self, session):
         self.session = session

@@ -21,11 +21,25 @@ class MovieDAO:
     def get_all_by_year(self, year: int):
         return self.session.query(Movie).filter(Movie.year == year).all()
 
-    def create_movie(self):
-        pass
+    def create_movie(self, data):
+        movie = Movie(**data)
+        self.session.add(movie)
+        self.session.commit()
+        return movie
 
-    def update_movie(self):
-        pass
+    def update_movie(self, data):
+        mid = data.get('id')
+        movie = self.get_one(mid)
+        movie.title = data.get('title')
+        movie.description = data.get('description')
+        movie.trailer = data.get('trailer')
+        movie.year = data.get('year')
+        movie.rating = data.get('rating')
+        movie.genre_id = data.get('genre_id')
+        movie.director_id = data.get('director_id')
+        self.session.add(movie)
+        self.session.commit()
+        return movie
 
     def delete_movie(self, mid: int):
         self.session.delete(mid)

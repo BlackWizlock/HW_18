@@ -1,7 +1,7 @@
 from app.dao.model.director import Director
 
 
-# CRUD
+# cRud - only read was used
 class DirectorDAO:
     def __init__(self, session):
         self.session = session

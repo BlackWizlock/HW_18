@@ -28,6 +28,16 @@ class MoviesViewByAttr(Resource):
             return movies_schema.dump(movie_service.get_all_by_year(year)), 200
         return movies_schema.dump(movie_service.get_all()), 200
 
+    def post(self):
+        req_json = request.json
+        movie_service.create_movie(req_json)
+        return '', 201
+
+    def put(self):
+        req_json = request.json
+        movie_service.update_movie(req_json)
+        return '', 201
+
 
 @movies_ns.route('/<int:movie_id>')
 class MovieViewById(Resource):
@@ -38,5 +48,3 @@ class MovieViewById(Resource):
     def delete(self, movie_id: int):
         movie_service.delete_movie(movie_id)
         return f'{movie_id} удалён', 204
-
-    # TODO: add PUT method, POST method for movies
