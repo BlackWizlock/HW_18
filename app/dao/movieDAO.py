@@ -15,8 +15,8 @@ class MovieDAO:
     def get_all_by_director(self, director_id: int):
         return self.session.query(Movie).filter(Movie.director_id == director_id).all()
 
-    def get_all_by_genre(self, genre: int):
-        return self.session.query(Movie).filter(Movie.genre == genre).all()
+    def get_all_by_genre(self, genre_id: int):
+        return self.session.query(Movie).filter(Movie.genre_id == genre_id).all()
 
     def get_all_by_year(self, year: int):
         return self.session.query(Movie).filter(Movie.year == year).all()
