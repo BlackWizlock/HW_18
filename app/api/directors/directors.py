@@ -24,5 +24,9 @@ class DirectorView(Resource):
 
     # CRUD
     def get(self, did: int):
+        if not isinstance(did, int):
+            return 'Invalid type of instance', 404
         director = director_service.get_one(did)
-        return director_schema.dump(director), 200
+        if director:
+            return director_schema.dump(director), 200
+        return f'Not found', 204

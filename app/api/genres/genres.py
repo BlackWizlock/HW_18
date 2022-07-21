@@ -24,5 +24,9 @@ class GenreView(Resource):
 
     # CRUD
     def get(self, gid: int):
+        if not isinstance(gid, int):
+            return 'Invalid type of instance', 404
         genre = genre_service.get_one(gid)
-        return genre_schema.dump(genre), 200
+        if genre:
+            return genre_schema.dump(genre), 200
+        return f'Not found', 204
