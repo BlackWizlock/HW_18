@@ -20,8 +20,6 @@ class MoviesViewByAttr(Resource):
         director_id = request.args.get('director_id', type=int)
         genre_id = request.args.get('genre_id', type=int)
         year = request.args.get('year', type=int)
-        if not isinstance(genre_id, int) or not isinstance(director_id, int) or not isinstance(year, int):
-            return 'Invalid type of instance', 404
         if director_id:
             req = movie_service.get_all_by_director(director_id)
             if not req:
@@ -39,6 +37,7 @@ class MoviesViewByAttr(Resource):
             return movies_schema.dump(req), 200
         return movies_schema.dump(movie_service.get_all()), 200
 
+
     def post(self):
         try:
             req_json = request.json
@@ -46,6 +45,7 @@ class MoviesViewByAttr(Resource):
             return '', 201
         except Exception:
             return '', 404
+
 
     def put(self):
         try:
