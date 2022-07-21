@@ -10,7 +10,7 @@ movie_schema = MovieSchema()
 movies_schema = MovieSchema(many=True)
 
 
-@movies_ns.route('')
+@movies_ns.route('/')
 class MoviesViewByAttr(Resource):
     @movies_ns.param('director_id', 'ID Режиссера для поиска')
     @movies_ns.param('genre_id', 'ID Жанра для поиска')
@@ -60,8 +60,6 @@ class MoviesViewByAttr(Resource):
 class MovieViewById(Resource):
     @movies_ns.doc(description='[MOVIE] Работа с базой данный фильмов по ID')
     def get(self, movie_id: int):
-        if not isinstance(movie_id, int):
-            return 'Invalid type of instance', 404
         req = movie_service.get_one(movie_id)
         if req:
             return movie_schema.dump(req), 200
