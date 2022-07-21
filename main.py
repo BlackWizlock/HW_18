@@ -8,6 +8,7 @@ from app.api.genres.genres import genres_ns
 from app.api.movies.movies import movies_ns
 
 # Config for flask factory
+from app.configs import logger_init
 from app.configs.config import Config
 
 # DB importing
@@ -38,5 +39,6 @@ if __name__ == '__main__':
     app = create_app(app_config)
     # init db, restx according to app instance which was created before
     configure_app(app)
+    logger_init.create_logger()
     # simple application running
     app.run()

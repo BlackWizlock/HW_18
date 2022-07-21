@@ -1,3 +1,5 @@
+import logging
+
 from flask import request
 from flask_restx import Resource, Namespace
 
@@ -10,6 +12,8 @@ movie_schema = MovieSchema()
 movies_schema = MovieSchema(many=True)
 
 
+logger = logging.getLogger("basic")
+
 @movies_ns.route('/')
 class MoviesViewByAttr(Resource):
     @movies_ns.param('director_id', 'ID Режиссера для поиска')
@@ -20,6 +24,7 @@ class MoviesViewByAttr(Resource):
         director_id = request.args.get('director_id', type=int)
         genre_id = request.args.get('genre_id', type=int)
         year = request.args.get('year', type=int)
+        logger.info(f'[GET] Movies Director_id: {director_id} Genre_id:{genre_id} Year: {year}')
         if director_id:
             req = movie_service.get_all_by_director(director_id)
             if not req:
@@ -60,6 +65,7 @@ class MoviesViewByAttr(Resource):
 class MovieViewById(Resource):
     @movies_ns.doc(description='[MOVIE] Работа с базой данный фильмов по ID')
     def get(self, movie_id: int):
+        logger.info(f'[GET] Movies by id: {movie_id}')
         req = movie_service.get_one(movie_id)
         if req:
             return movie_schema.dump(req), 200
