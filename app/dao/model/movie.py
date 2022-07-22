@@ -1,6 +1,8 @@
 from marshmallow import Schema, fields
 
 from app.configs.setup_db import db
+from app.dao.model.director import DirectorSchema
+from app.dao.model.genre import GenreSchema
 
 
 class Movie(db.Model):
@@ -26,4 +28,6 @@ class MovieSchema(Schema):
     year = fields.Int()
     rating = fields.Float()
     genre_id = fields.Int()
+    genre = fields.Pluck(GenreSchema, 'name')
     director_id = fields.Int()
+    director = fields.Pluck(DirectorSchema, 'name')

@@ -1,0 +1,6 @@
+2022-07-21 17:38:46,298 [INFO] get director None None None
+2022-07-21 18:27:01,488 [INFO] [GET] Movies Director_id: None Genre_id:None Year: None
+2022-07-21 18:27:42,208 [INFO] [GET] Movies Director_id: None Genre_id:None Year: None
+2022-07-21 18:31:02,334 [INFO] [GET] Movies Director_id: None Genre_id:None Year: None
+2022-07-22 13:51:09,622 [INFO] [GET] Movies Director_id: None Genre_id:None Year: None
+2022-07-22 13:51:49,598 [INFO] [GET] Movies Director_id: None Genre_id:None Year: 2001
